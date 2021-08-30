@@ -1,10 +1,10 @@
 # GH Action Workflow: Example Workflow to cleanup (ephemeral) Sandbox Namespaces 
 
-name:  
+name: Create Sandbox
 on: [push, create]
 
 jobs:
-  cleanup_namespace:
+  create_sandbox:
     name: Cluster Authentication 
     uses: redhat-actions/oc-login@v1
     runs-on: [deployer]

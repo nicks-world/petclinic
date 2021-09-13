@@ -22,13 +22,14 @@ jobs:
   remote-job:
     runs-on: ubuntu-latest
     env:
+      TEAM_INFRA_REPOSITORY: nicks-world/cicd-infra-pc-team
       CICD_INFRA_SVC_ACCT_PAT: ${{ secrets.CICD_TOKEN }}
       WORKFLOW_NAME: ${{ github.event.inputs.workflow-name }}
     steps:
     - name: Checkout CICD infra library
       uses: actions/checkout@v2
       with:
-        repository: nicks-world/cicd-infra-pc-team
+        repository: ${{ env.TEAM_INFRA_REPOSITORY }}
         ref: main
         path: cicd-infra-pc-team
         token: ${{ secrets.CICD_TOKEN }}

@@ -35,5 +35,5 @@ jobs:
         token: ${{ secrets.CICD_TOKEN }}
     - name: Trigger remote workflow
       run: |
-        ${GITHUB_WORKSPACE}/cicd-infra-pc-team/scripts/trigger-remote-workflow/trigger-remote-workflow.sh
+        ${GITHUB_WORKSPACE}/${TEAM_INFRA_REPOSITORY}/scripts/trigger-remote-workflow/trigger-remote-workflow.sh
 

@@ -12,7 +12,7 @@ jobs:
   remote-job:
     runs-on: ubuntu-latest
     env:
-      CICD_INFRA_SVC_ACCT_PAT: ${{ secrets.CICD_INFRA_SVC_ACCT_PAT }}
+      CICD_INFRA_SVC_ACCT_PAT: ${{ secrets.CICD_TOKEN }}
       WORKFLOW_NAME: ${{ github.event.inputs.workflow-name }}
     steps:
     - name: Checkout CICD infra library
@@ -21,7 +21,7 @@ jobs:
         repository: nicks-world/cicd-infra-pc-team
         ref: master
         path: cicd-infra-pc-team
-        token: ${{ secrets.CICD_INFRA_SVC_ACCT_PAT }}
+        token: ${{ secrets.CICD_TOKEN }}
     - name: Trigger remote workflow
       run: |
         ${GITHUB_WORKSPACE}/cicd-infra-pc-team/scripts/trigger-remote-workflow/trigger-remote-workflow.sh ${WORKFLOW_NAME} ${CICD_INFRA_SVC_ACCT_PAT}

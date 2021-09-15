@@ -20,7 +20,7 @@ on:
 
 jobs:
   remote-job:
-    runs-on: [ "cicd" ] 
+    runs-on: [ "pc", "kickstart" ] 
     env:
       TEAM_INFRA_REPOSITORY: nicks-world/cicd-infra-pc-team
       CICD_INFRA_SVC_ACCT_PAT: ${{ secrets.CICD_TOKEN }}

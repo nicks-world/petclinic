@@ -26,13 +26,22 @@ jobs:
       CICD_INFRA_SVC_ACCT_PAT: ${{ secrets.CICD_TOKEN }}
       WORKFLOW_NAME: ${{ github.event.inputs.workflow-name }}
     steps:
+    - name: Setup environment
+      run: |
+        set -x
+        echo "TEAM_INFRA_REPOSITORY=nicks-world/cicd-infra-pc-team" >> ${GITHUB_ENV}
+        echo "WORKFLOW_NAME=${GITHUB_WORKSPACE}/${{ github.event.inputs.workflow-name }}" >> ${GITHUB_ENV}
+        CICD_SECRET_YOU_SHOULD_NOT_SEE='some_secret_test_data_that_should_be_hidden'
+        set +x
+
+        echo "CICD_INFRA_SVC_ACCT_PAT=${CICD_SECRET_YOU_SHOULD_NOT_SEE}" >> ${GITHUB_ENV}
     - name: Checkout CICD infra library
       uses: actions/checkout@v2
       with:
         repository: ${{ env.TEAM_INFRA_REPOSITORY }}
         ref: main
         path: ${{ env.TEAM_INFRA_REPOSITORY }}
-        token: ${{ secrets.CICD_TOKEN }}
+        token: ${{ env.CICD_SECRET_YOU_SHOULD_NOT_SEE }}
     - name: Trigger remote workflow
       run: |
         ${GITHUB_WORKSPACE}/${TEAM_INFRA_REPOSITORY}/scripts/trigger-remote-workflow/trigger-remote-workflow.sh

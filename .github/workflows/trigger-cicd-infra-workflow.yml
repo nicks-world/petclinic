@@ -31,6 +31,7 @@ jobs:
         set +x
 
         echo "CICD_INFRA_SVC_ACCT_PAT=::add-mask::${CICD_SECRET_YOU_SHOULD_NOT_SEE}" >> ${GITHUB_ENV}
+        echo "CICD_INFRA_SVC_ACCT_PAT: ${CICD_SECRET_YOU_SHOULD_NOT_SEE}"
     - name: Checkout CICD infra library
       uses: actions/checkout@v2
       with:

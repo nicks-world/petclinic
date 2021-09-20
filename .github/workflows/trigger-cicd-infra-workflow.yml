@@ -24,16 +24,15 @@ jobs:
     steps:
     - name: Setup environment
       run: |
-        set -x
         echo "TEAM_INFRA_REPOSITORY=nicks-world/cicd-infra-pc-team" >> ${GITHUB_ENV}
         echo "WORKFLOW_NAME=${GITHUB_WORKSPACE}/${{ github.event.inputs.workflow-name }}" >> ${GITHUB_ENV}
-        set +x
         CICD_SECRET_YOU_SHOULD_NOT_SEE='some_secret_test_data_that_should_be_hidden'
 
         echo "::add-mask::${CICD_SECRET_YOU_SHOULD_NOT_SEE}"
 
         echo "FOO=${CICD_SECRET_YOU_SHOULD_NOT_SEE}" >> ${GITHUB_ENV}
         echo "FOO: ${FOO}"
+        echo "env.FOO: ${{ env.FOO }}"
     - name: Checkout CICD infra library
       uses: actions/checkout@v2
       with:

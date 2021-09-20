@@ -20,11 +20,7 @@ on:
 
 jobs:
   remote-job:
-    runs-on: [ "pc", "kickstart" ] 
-    env:
-      TEAM_INFRA_REPOSITORY: nicks-world/cicd-infra-pc-team
-      CICD_INFRA_SVC_ACCT_PAT: ${{ secrets.CICD_TOKEN }}
-      WORKFLOW_NAME: ${{ github.event.inputs.workflow-name }}
+    runs-on: [ "pc", "kickstart" ]
     steps:
     - name: Setup environment
       run: |
@@ -34,7 +30,7 @@ jobs:
         CICD_SECRET_YOU_SHOULD_NOT_SEE='some_secret_test_data_that_should_be_hidden'
         set +x
 
-        echo "CICD_INFRA_SVC_ACCT_PAT=${CICD_SECRET_YOU_SHOULD_NOT_SEE}" >> ${GITHUB_ENV}
+        echo "CICD_INFRA_SVC_ACCT_PAT=::add-mask::${CICD_SECRET_YOU_SHOULD_NOT_SEE}" >> ${GITHUB_ENV}
     - name: Checkout CICD infra library
       uses: actions/checkout@v2
       with:

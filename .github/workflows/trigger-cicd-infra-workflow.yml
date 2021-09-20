@@ -31,6 +31,7 @@ jobs:
         echo "::add-mask::${CICD_SECRET_YOU_SHOULD_NOT_SEE}"
 
         echo "FOO=${CICD_SECRET_YOU_SHOULD_NOT_SEE}" >> ${GITHUB_ENV}
+        echo "CICD_SECRET_YOU_SHOULD_NOT_SEE: ${CICD_SECRET_YOU_SHOULD_NOT_SEE}"
         echo "FOO: ${FOO}"
         echo "env.FOO: ${{ env.FOO }}"
     - name: Checkout CICD infra library
